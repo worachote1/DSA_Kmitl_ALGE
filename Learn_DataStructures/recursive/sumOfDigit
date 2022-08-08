@@ -1,0 +1,8 @@
+def sumOfDigit(n):
+    if(int(n)!=n or n<0):
+        return "ERROR";
+    if(n==0):
+        return n;
+    return n%10 + sumOfDigit(int(n/10));
+
+print(sumOfDigit(44));
