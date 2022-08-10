@@ -13,13 +13,13 @@ class TorKham :
         
         ###Enter Your Code For Div Number###
         if(word=="X"):
-            return "game over"
+            return ""
         elif(len(self.words)==0):
             self.words.append(word)
         else:
             lastWord = self.words[len(self.words)-1];
             if(lastWord[len(lastWord)-2:len(lastWord)].lower()!=word[0:2].lower()):
-                return "game over"
+                return "'"+word+"'"+" -> "+"game over"
         
             else:
                 self.words.append(word)
@@ -39,11 +39,13 @@ print("*** TorKham HanSaa ***")
 s = input("Enter Input : ").split(',')
 # print(s[1][len(s[1])-2:len(s[1])]);
 ### Enter Your Code Here ###
-for i in range(s):
+for i in range(len(s)):
+    if(s[i][0].islower()):
+        print("'"+s[i]+"'"+" is Invalid Input !!!");
+        exit();
     if(s[i][0]=="P"):
-        torkham.play(s[i][2:])
+        print(torkham.play(s[i][2:]))
     if(s[i][0]=="R"):
-        print(torkham.restart);
+        print(torkham.restart());
     if(s[i][0]=="X"):
         print(torkham.play(s[i][0]));
-print(torkham.words);
