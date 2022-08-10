@@ -7,7 +7,6 @@ def stringifyNumbers(obj):
            stringifyNumbers(obj[key]);
     return obj;
 
-
 obj = {
   "num": 1,
   "test": [],
