@@ -19,15 +19,15 @@ class Queue:
         if self.rear == None:
             self.front = self.rear = temp;
 
-        self.rear = temp;
-        self.rear.next = temp;
+        else :   
+            self.rear.next = temp;
+            self.rear = temp;
 
     def display(self):
         temp = self.front;
         while temp is not None:
             print(temp.data);
             temp = temp.next;
-
 
 
 q = Queue();
