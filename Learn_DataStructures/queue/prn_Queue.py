@@ -22,6 +22,7 @@ class Queue:
         else :   
             self.rear.next = temp;
             self.rear = temp;
+            #print("prn",self.rear.data);
 
     def display(self):
         temp = self.front;
