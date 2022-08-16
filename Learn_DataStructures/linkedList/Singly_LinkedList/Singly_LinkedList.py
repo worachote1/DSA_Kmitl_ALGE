@@ -27,6 +27,7 @@ class SLinkedList:
             else:
                 tempNode = self.head;
                 index = 0;
+                #will insert after location (location is 1,2,3,...)
                 while(index<location-1):
                     tempNode = tempNode.next;
                     index+=1;
@@ -49,9 +50,11 @@ sl = SLinkedList();
 
 
 sl.insert(44,0);
-sl.insert(23,1);
-sl.insert(14,2);
+sl.insert(213,1);
+sl.insert(89,2);
 sl.insert(37,3);
+sl.insert(19,4);
+sl.insert(26,2);
 
 
 sl.testDisplay();
