@@ -31,14 +31,11 @@ class Stack:
 
     def items(self):
         return self._data;
-
 #prn main
 # K+L-M*N+(O^P)*W/U/V*T+Q
 inp = input('Enter Infix : ')
-
 S = Stack()
 result = "";
-
 #cal section
 #operator presence
 # 1) (),{},[]
@@ -46,38 +43,39 @@ result = "";
 # 3) *,/ : L->R
 # 4) +,- : L->R
 opt = {"+":1,"-":1,"*":2,"/":2,"^":3};
-#print("prn -> ",opt());
 for item in inp:
       
-    if(item not in opt):
+    if(item not in opt and not item in["(",")"]):
         result += item;
         continue;
-    if(item=="^"):
+
+    if(item == "("):
         S.push(item);
         continue;
+    if(item == ")"):
+        prn_pop = S.pop();
+        while(prn_pop!="("):
+            result+=prn_pop;
+            prn_pop = S.pop();
 
-    print("current item tyr-> ",item);
-    if(S.isEmpty()):
-        S.push(item);
-        continue;       
-    if(opt.get(item)>opt.get(S.peek()) and not S.isEmpty()):
-        S.push(item);
         continue;
 
-    print("current item prn 44 -> ",item);
-    while(opt.get(item)<opt.get(S.peek()) and not S.isEmpty()):
-        if(S.isEmpty() or S.peek()=='('):
+    #if it's operater
+    while(True):
+        if(S.isEmpty() or S.peek()=="("):
+            S.push(item);
+            break;            
+
+        if(opt.get(item)>opt.get(S.peek())):
             S.push(item);
             break;
-        result += S.pop();
-
-
-
+        elif(opt.get(item)<=opt.get(S.peek())):
+            result += S.pop();
+  
 #end loop for in
-#a*b+c
+#a*b+c -> test error ?
 print('Postfix : ', end='');
 print(result,end="");
 while not S.isEmpty():
     print(S.pop(), end='');
-
-# print()
+print()
