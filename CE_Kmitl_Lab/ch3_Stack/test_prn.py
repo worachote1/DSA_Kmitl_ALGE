@@ -14,3 +14,5 @@ print(my_dict)
 for item in my_dict:
     print(item);
 print(my_dict.get('-'));
+if(my_dict.get("+")>my_dict.get("-")):
+    print("prn more val");

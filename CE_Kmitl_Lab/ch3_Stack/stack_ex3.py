@@ -48,20 +48,24 @@ result = "";
 opt = {"+":1,"-":1,"*":2,"/":2,"^":3};
 #print("prn -> ",opt());
 for item in inp:
-    
-    print("prn -> ",opt.get('*'));
-    
+      
     if(item not in opt):
-        S.push(item);
+        result += item;
         continue;
     if(item=="^"):
         S.push(item);
         continue;
-    if(opt.get(item)>opt.get(S.peek())):
+
+    print("current item tyr-> ",item);
+    if(S.isEmpty()):
+        S.push(item);
+        continue;       
+    if(opt.get(item)>opt.get(S.peek()) and not S.isEmpty()):
         S.push(item);
         continue;
 
-    while(opt.get(item)<=opt.get(S.peek()) ):
+    print("current item prn 44 -> ",item);
+    while(opt.get(item)<opt.get(S.peek()) and not S.isEmpty()):
         if(S.isEmpty() or S.peek()=='('):
             S.push(item);
             break;
@@ -70,10 +74,10 @@ for item in inp:
 
 
 #end loop for in
-
-# print('Postfix : ', end='');
-# print(result,end="");
-# while not S.isEmpty():
-#     print(S.pop(), end='');
+#a*b+c
+print('Postfix : ', end='');
+print(result,end="");
+while not S.isEmpty():
+    print(S.pop(), end='');
 
 # print()
