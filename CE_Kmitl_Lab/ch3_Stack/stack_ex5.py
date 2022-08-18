@@ -43,23 +43,11 @@ for item in inp:
     if(item[0]=="A"):
         if(tree.isEmpty()):
             tree.push(item);
-            hight.append(int(item[-1]));
+            hight.append(int(item[1:]));
             continue;
-        if(int(item[-1])>int(tree.peek()[-1])):
-            while(True):
-                tree.pop();
-                hight.pop();
-                if(tree.isEmpty()):
-                    break;
-                if(int(item[-1])<=int(tree.peek()[-1])):
-                    break;
-
-            tree.push(item);
-            hight.append(int(item[-1]));
-            continue; 
 
         tree.push(item);
-        hight.append(int(item[-1]));
+        hight.append(int(item[1:]));
 
     if(item=="B"):
         #clone temp
@@ -75,13 +63,13 @@ for item in inp:
         if(len(temp_hight)==1):
             print(1);
             continue;
-        while(temp_hight[-1]>temp_hight[-2]):
-
-            temp_hight.pop();
-            if(len(temp_hight)==1):
-                break;
+        count = 0;
+        #loop from last to 1 index
+        # for i in range(len(temp_hight)-1, 1-1, -1):
+        #     if(temp_hight[i]<temp_hight[i-1]):
+        #         count+=1;
             
-        print(len(temp_hight));
+        # print(count);
         
 
     if(item=="S"):
