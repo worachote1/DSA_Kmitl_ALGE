@@ -1,6 +1,3 @@
-
-
-
 #Fuck U Kritsada
 class Queue:
     def __init__(self):
