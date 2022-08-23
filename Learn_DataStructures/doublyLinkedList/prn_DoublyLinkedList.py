@@ -66,11 +66,44 @@ class DoublyLinkedList:
             temp = temp.next;
             index+=1;
         return "The node does not exist"
+    
+        # Delete a node from Doubly Linked List
+    def deleteNode(self,location):
+        if self.head is None:
+            print("There is not any element in DLL")
+        else:
+            if location == 0:
+                if self.head == self.tail:
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.head = self.head.next
+                    self.head.prev = None
+            elif location == 1:
+                if self.head == self.tail:
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.tail = self.tail.prev
+                    self.tail.next = None
+            else:
+                curNode = self.head
+                index = 0
+                while index < location - 1:
+                    curNode = curNode.next
+                    index += 1
+                curNode.next = curNode.next.next
+                curNode.next.prev = curNode
+            print("The node has been successfully deleted")
 
 dLL = DoublyLinkedList();
 print(dLL.createDLL(44));
 dLL.insert(12,0);
 dLL.insert(85,1);
 dLL.testDisplay();
-print(dLL.search(48))
+print(dLL.search(44))
         
+a = 0.1;
+b = 0.2;
+c = (a*10+b*10)/10;
+print(c);
