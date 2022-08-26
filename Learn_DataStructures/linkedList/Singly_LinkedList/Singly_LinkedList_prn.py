@@ -6,7 +6,6 @@ class Node:
         self.value = value;
         self.next = None;
 
-
 #Class for SLinkedList
 class SLinkedList:
     def __init__(self):
