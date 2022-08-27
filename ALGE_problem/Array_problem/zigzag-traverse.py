@@ -8,7 +8,7 @@ def zigzagTraverse(array):
     goDown = True;
     while(not(row > maxHight or col > maxWidth)):
         res.append(array[row][col]);
-        print("b4 prn -> ",array[row][col],"and goDown : ",goDown);
+        print("element b4 -> ",array[row][col],"and goDown : ",goDown);
         if(goDown):
             #if it hit border left or bottom
             if(row==maxHight or col==0):
