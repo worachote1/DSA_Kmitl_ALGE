@@ -49,5 +49,6 @@ print(data.keys());
 for item in data:
     print(data[item][2])
 
+print(">>>>>>?>?>?>/./");
 res = [4, 3, 2, 1, 2];
 print(res.index(2))

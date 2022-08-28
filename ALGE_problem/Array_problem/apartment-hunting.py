@@ -1,5 +1,3 @@
-from array import array
-
 
 def apartmentHunting(blocks, reqs):
     
