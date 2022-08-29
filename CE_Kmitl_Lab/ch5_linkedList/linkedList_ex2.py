@@ -2,7 +2,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-        self.previous = None
+        self.prev = None
 
 class DoublyLinkedList:
     def __init__(self):
@@ -26,7 +26,7 @@ class DoublyLinkedList:
             cur = cur.next
         for i in range(self.size()-1):
             s += str(cur.data) + "->"
-            cur = cur.previous
+            cur = cur.prev
         s += cur.data
         return s
     
@@ -42,7 +42,7 @@ class DoublyLinkedList:
         while cur.next is not None:
             cur = cur.next
         cur.next = newNode
-        newNode.previous = cur
+        newNode.prev = cur
 
     def size(self):
         cur, cnt = self.head, 0
@@ -57,7 +57,7 @@ class DoublyLinkedList:
         if self.isEmpty():
             self.head = newNode
             return 
-        cur.previous = newNode
+        cur.prev = newNode
         newNode.next = cur
         self.head = newNode
         return 
@@ -74,7 +74,7 @@ class DoublyLinkedList:
             self.head = newNode
             return 
         elif index == 0:
-            cur.previous = newNode
+            cur.prev = newNode
             newNode.next = cur
             self.head = newNode
             return 
@@ -82,15 +82,15 @@ class DoublyLinkedList:
             while cur.next is not None:
                 cur = cur.next
             cur.next = newNode
-            newNode.previous = cur
+            newNode.prev = cur
             return 
         for i in range(index):
             cur = cur.next
-        newNode.previous = cur.previous
-        cur.previous.next = newNode
-        cur.previous = newNode
-        newNode.next = cur
-        return 
+        newNode.prev = cur.prev;
+        cur.prev.next = newNode;
+        cur.prev = newNode;
+        newNode.next = cur;
+        return ;
 
     def remove(self,data):
         if self.isEmpty():
@@ -100,17 +100,17 @@ class DoublyLinkedList:
         cur = self.head
         while cur is not None:
             if cur.data == data:
-                if cur.previous is None and cur.next is None:
-                    self.head = None
-                elif cur.previous is None and cur.next is not None:
-                    self.head = cur.next
-                    self.head.previous = None
-                elif cur.previous is not None and cur.next is None:
-                    cur.previous.next = None
-                elif cur.previous is not None and cur.next is not None:
-                    cur.previous.next = cur.next
-                    cur.next.previous = cur.previous
-                print(f'removed : {data} from index : {cnt}')
+                if cur.prev is None and cur.next is None:
+                    self.head = None;
+                elif cur.prev is None and cur.next is not None:
+                    self.head = cur.next;
+                    self.head.prev = None;
+                elif cur.prev is not None and cur.next is None:
+                    cur.prev.next = None;
+                elif cur.prev is not None and cur.next is not None:
+                    cur.prev.next = cur.next;
+                    cur.next.prev = cur.prev;
+                print(f'removed : {data} from index : {cnt}');
                 return 
             cnt += 1
             cur = cur.next
