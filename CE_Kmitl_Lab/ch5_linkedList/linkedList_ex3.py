@@ -70,13 +70,13 @@ for item in inp:
             #here 44
             #if these bombed item are the last 3 item
             if(cur.prev==None and cur.next.next.next == None):
-                Kuy_Kritsada.head.next = None;
+                #Kuy_Kritsada.head.next = None;
                 Kuy_Kritsada.head = None;
             #if the last element just bombed
             elif(cur.prev!=None and cur.next.next.next == None):
                 #Kuy_Kritsada.head = cur.prev;
                 Kuy_Kritsada.prev.next =  None;
-            #
+            
             elif(cur.prev==None and cur.next.next.next != None):
                 Kuy_Kritsada.head = cur.next.next.next;
 
@@ -88,7 +88,7 @@ for item in inp:
             #
         cur = cur.next;
     
-    # print("prn44 -> ",Kuy_Kritsada);
+    print("prn44 -> ",Kuy_Kritsada);
 
 print(Kuy_Kritsada.size());
 print(Kuy_Kritsada);

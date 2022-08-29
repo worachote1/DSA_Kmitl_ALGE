@@ -1,3 +1,3 @@
-
-for i in range(2):
-    print(i);
+a = "I";
+b = a.split(" ");
+print(b)
