@@ -1,7 +1,3 @@
-from calendar import c
-from unittest.mock import NonCallableMagicMock
-
-
 class Node:
     def __init__(self,data):
         self.data = data;
@@ -126,6 +122,25 @@ class DoublyLinkedlist:
         elif(cur.next.next != None):
             newNode.next = cur.next.next;
 
+    def remove_right(self):
+        cur = self.head;
+        tempPrev = None;
+        newNode = Node("|");
+        while(cur.data != "|"):
+            tempPrev = cur;
+            cur = cur.next;
+        
+        if(cur.next == None):
+            return;
+        
+        if(tempPrev==None):
+            self.head=newNode;
+        elif(tempPrev!=None):
+            tempPrev.next = newNode;
+        if(cur.next.next==None):
+            newNode.next = None;
+        elif(cur.next.next!=None):
+            newNode.next = cur.next.next;
 
 #
 Vim = DoublyLinkedlist();
@@ -149,4 +164,4 @@ for item in inp:
 
 #display result after using Vim-text-Editer command
 print(Vim);
-print("size -> ",Vim.size());
+#print("size -> ",Vim.size());
