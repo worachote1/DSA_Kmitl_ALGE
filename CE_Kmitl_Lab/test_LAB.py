@@ -1,6 +1,12 @@
-test_str = "Pyt"
+m = [1,2,3]
 
-res = [test_str[i: j] for i in range(len(test_str))
-       for j in range(i + 1, len(test_str) + 1)]
+print(m[:1]+m[1+1:]);
 
-print(res)
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist.copy()
+prnList = thislist;
+thislist[1]="prn"
+print(mylist)
+print(prnList);
+prnList[0]="44";
+print(thislist);
