@@ -1,12 +1,13 @@
-m = [1,2,3]
+r = ["wdw","bmw","daf"];
+m = [1,2,3,4]
+print(r);
+ss = " ".join(r);
+print(" ".join(str(item) for item in m));
 
-print(m[:1]+m[1+1:]);
+t = [10,20,30]
+ss = "500000"
+print("{:,}".format(int("50000")))
 
-thislist = ["apple", "banana", "cherry"]
-mylist = thislist.copy()
-prnList = thislist;
-thislist[1]="prn"
-print(mylist)
-print(prnList);
-prnList[0]="44";
-print(thislist);
+closeData = {")":"(","]":"[","}":"{"}
+for i in closeData:
+    print(i);
