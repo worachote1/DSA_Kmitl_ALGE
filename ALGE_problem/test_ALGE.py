@@ -1,4 +1,3 @@
-a = "00"
-b = int(a)
-print(a)
-print(b)
+string = ["t","i","m"];
+for i in range(len(string)-1,-1,-1):
+    print(string[i]);
