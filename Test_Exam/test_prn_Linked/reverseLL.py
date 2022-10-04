@@ -4,13 +4,16 @@ class LinkedList:
         self.value = value
         self.next = None
 
+
 def reverseLinkedList(head):
-    prev = None
+    newLL = head
     cur = head
+    prev = None
     while(cur != None):
         temp = cur.next
         cur.next = prev
         prev = cur
         cur = temp
+
     
     return prev
