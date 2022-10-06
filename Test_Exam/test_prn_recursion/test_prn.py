@@ -8,3 +8,6 @@ print("------------------------------")
 
 for i in range(1):
     print(i)
+
+
+print(str(4)+"prn"+"kl"+str(25)+"GHJ")
