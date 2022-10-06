@@ -7,18 +7,31 @@
 
 #     return subsets
     
-# def powerset(array):
-#     subsets = [[]]
-#     for i in array:
-#         for j in range(len(subsets)):
-#             cur = subsets[j]
-#             subsets.append(cur+[i])
+arr = [1,2,3]
 
-#     return subsets
+# for loop
+def powerset_for(arr):
+    subsets = [[]]
+    for i in range(len(arr)):
+        for j in range(len(subsets)):
+            cur = subsets[j]
+            subsets.append(cur+[arr[i]])
+            
+            
+    return subsets
 
-# arr = [1,2,3]
-# print(powerset(arr))
+#recursive
+def powerset_recur(arr):
+    return helper(arr,len(arr)-1)
 
-a = [[]]
-b = a[0] + []
-print(b) 
+def helper(arr,index):
+    if(index<0):
+        return [[]]
+    
+    subsets = helper(arr,index-1)
+    for i in range(len(subsets)):
+        subsets.append(subsets[i]+[arr[index]])
+    return subsets
+
+#print(powerset_for(arr))
+print(powerset_recur(arr))
