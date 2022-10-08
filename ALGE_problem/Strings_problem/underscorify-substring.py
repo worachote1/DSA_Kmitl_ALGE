@@ -5,6 +5,8 @@ def underscorifySubstring(string, substring):
     underscore_POS_data = manange_collapse(underscore_POS_data)
     # print(underscore_POS_data)
     # display section
+    if(underscore_POS_data==[]):
+        return string
     ss = ""
     for i in range(len(string)):
         for item in underscore_POS_data:
