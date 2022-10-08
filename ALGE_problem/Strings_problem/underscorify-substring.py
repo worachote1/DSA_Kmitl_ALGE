@@ -1,40 +1,57 @@
 
 def underscorifySubstring(string, substring):
-    sub_length = len(substring)
-    res_Pos = []
-    underscore_POS_data = []
-    Lp = -44
-    Rp = -44
-    for i in range(len(string)):
-        sub_length = len(substring)
-        target = string[i:i+sub_length]        
-        if(target==substring):
-            Lp = i
-            Rp = i+sub_length
-            if(underscore_POS_data == []):
-                underscore_POS_data.append(Lp)
-                underscore_POS_data.append(Rp)
-            else:
-                underscore_POS_data[1]=Rp
-        if(string[i]==" " or i==len(string)-1):
-            if(underscore_POS_data != []):
-                res_Pos.append(underscore_POS_data[0])
-                res_Pos.append(underscore_POS_data[1])
-            underscore_POS_data = []
-    
-    print("res -> ",str(res_Pos))
+    underscore_POS_data =  findAllPos(string,substring)
+    # print(underscore_POS_data)
+    underscore_POS_data = manange_collapse(underscore_POS_data)
+    # print(underscore_POS_data)
+    # display section
     ss = ""
-    if(res_Pos != []):
-        for i in range(len(string)):
-            if(i in res_Pos):
+    for i in range(len(string)):
+        for item in underscore_POS_data:
+            if(i in item):
                 ss+="_"
-            ss+=string[i]
-        if(res_Pos[-1]>len(string)-1):
-            ss+="_"
+                break
+        ss += string[i]
+    if(underscore_POS_data[-1][1]>len(string)-1):
+        ss+="_"
+    return ss
 
-    return ss if res_Pos != [] else string
+def findAllPos(string,substring):
+    startIdx = 0
+    res = []
+    
+    while(startIdx < len(string)):
+        foundAt = string.find(substring,startIdx)    
+        if(foundAt == -1):
+            break;
+        
+        res.append([foundAt,foundAt+len(substring)])
+        #print(res)
+        startIdx = foundAt+1
+
+    return res
+
+def manange_collapse(data):
+    if(data==[]):
+        return data
+    
+    new_data = [data[0]]
+    prev = new_data[0]
+
+    for i in  range(1,len(data)):
+        cur = data[i]
+        if(prev[1]>=cur[0]):
+            prev[1]=cur[1]
+        else:
+            new_data.append(cur)
+            prev = cur
+    
+    return new_data
+
 
 string = "abababababababababababababaababaaabbababaa";
 substring = "a"
-
 print(underscorifySubstring(string,substring))
+# string2="testthis is a testtest to see if testestest it works"
+# substring2="test"
+# print(underscorifySubstring(string2,substring2))
