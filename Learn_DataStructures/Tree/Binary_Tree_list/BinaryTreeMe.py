@@ -159,12 +159,20 @@ def deleteNode(rootNode,node):
             deepest_node = getDeepsNode(rootNode)
             deleteDeepestNode(rootNode,deepest_node)
             q.data = deepest_node.data
+            print("Success delete !")
             return
       
         if(q.rightChild != None):
             prn.Enqueue(q.rightChild) 
         if(q.leftChild != None):
             prn.Enqueue(q.leftChild)
+    
+    print("Fail to delete !")
+
+def deleteAll_BT(rootNode):
+    rootNode.data = None
+    rootNode.leftChild = None
+    rootNode.rightChild = None
 
 newBT = TreeNode("Drinks")
 leftChild = TreeNode("Hot")
@@ -199,4 +207,7 @@ print("--- deleting newNode ---")
 #print(getDeepsNode(newBT).data)
 # deleteDeepestNode(newBT,getDeepsNode(newBT))
 deleteNode(newBT,TreeNode("Cold"))
+levelOrderTraversal(newBT)
+print("After delete all : ")
+deleteAll_BT(newBT)
 levelOrderTraversal(newBT)
