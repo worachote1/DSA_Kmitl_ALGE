@@ -35,6 +35,7 @@ class BSTNode:
 def insertionNode(rootNode,nodeValue):
     if rootNode.data == None:
         rootNode.data = nodeValue
+        return
     elif (nodeValue <= rootNode.data):
         if(rootNode.leftChild == None):
             rootNode.leftChild = BSTNode(nodeValue)
@@ -101,6 +102,50 @@ def levelOrderTraversal(rootNode):
             prn.Enqueue(q.rightChild)
         print(q.data)
 
+#search
+def searchNode(rootNode,nodeValue):
+    if(rootNode.data==nodeValue):
+        return "The Value is found !"
+    elif(nodeValue<=rootNode.data):
+        if(rootNode.leftChild==None):
+            print("Not f")
+            return
+        if rootNode.leftChild.data == nodeValue:
+            print("The value is found")
+        else:
+            searchNode(rootNode.leftChild,nodeValue)
+    elif(nodeValue>rootNode.data):
+        if(rootNode.rightChild==None):
+            print("Not f")
+            return
+        if rootNode.rightChild.data == nodeValue:
+            print("The value is found")
+        else:
+            searchNode(rootNode.rightChild,nodeValue)
+
+#delete section
+def minValueNode(bstNode):
+    current = bstNode
+    while(current.left != None):
+        current = current.leftChild
+    return current
+
+def deleteNode(rootNode,nodeValue):
+    if rootNode == None:
+        return rootNode
+
+    if (nodeValue < rootNode.data):
+        rootNode.leftChild = deleteNode(rootNode.leftChild,nodeValue)
+    elif(nodeValue > rootNode.data):
+        rootNode.rightChild = deleteNode(rootNode.rightChild,nodeValue)
+
+
+#delete all
+def delete_Alll(rootNode):
+    rootNode.data = None
+    rootNode.leftChild = None
+    rootNode.rightChild = None
+
 #this method from KMITL grader
 def printTree90(node, level = 0):
     if node != None:
@@ -119,4 +164,6 @@ insertionNode_prn(newBST,6)
 insertionNode_prn(newBST,8)
 printTree90(newBST)
 
-levelOrderTraversal(newBST)
+
+# levelOrderTraversal(newBST)
+

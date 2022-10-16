@@ -1,28 +1,73 @@
-#three num sum
+class Node:
+    def __init__(self, data,left=None,right=None): 
+        self.data = data  
+        self.left = left  
+        self.right = right  
 
-def threeNumberSum(array, targetSum):
-    # Write your code here.
-    res = []
-    array.sort()
-    for i in range(len(array)-1):
-        leftIdx = i+1
-        rightIdx = len(array)-1
-        while(leftIdx<rightIdx):
-            sum = array[i]+array[leftIdx]+array[rightIdx]
-            if(sum==targetSum):
-                print("sfa")
-                found_arr = [array[i],array[leftIdx],array[rightIdx]]
-                if(found_arr not in res):
-                    res.append(found_arr)
-                leftIdx+=1
-                rightIdx-=1
-            
-            if(sum<targetSum):
-                leftIdx+=1
-            if(sum>targetSum):
-                rightIdx-=1
+    def __str__(self):
+        return str(self.data) 
 
-    return res
+class Stack:
+    def __init__(self,list = None):
+        if list == None:
+            self.items = []
+        else:
+            self.items = list
 
-arr = [12, 3, 1, 2, -6, 5, -8, 6]
-print(threeNumberSum(arr,0))
+    def push(self,i):
+        self.items.append(i)
+           
+    def pop(self):
+        return self.items.pop()
+
+    def isEmpty(self):
+        return self.items == []
+        
+    def size(self):
+        return str(len(self.items))
+
+
+def printTree(node, level = 0):
+    if node != None:
+        printTree(node.right, level + 1)
+        print('     ' * level, node)
+        printTree(node.left, level + 1)
+
+s = Stack()
+
+def infix(node):
+        if node == None:
+            return ''
+        s = '' 
+        if node.left is not None or node.right is not None:
+            s+='('
+        s+=infix(node.left)+str(node.data)+infix(node.right)
+        if node.left is not None or node.right is not None:
+            s+=')'
+        return s
+
+def prefix(node):
+    if node == None:
+        return ''
+    s = ''
+    s += str(node.data)
+    s += prefix(node.left)
+    s += prefix(node.right)
+    return s
+
+postfix = input("Enter Postfix : ")
+for i in range(len(postfix)):
+    if postfix[i] in '+-*/':
+        node1 = s.pop()
+        node2 = s.pop()
+        s.push(Node(postfix[i],node2,node1))
+    else:
+        s.push(Node(postfix[i]))
+
+        
+root = s.pop()
+print("Tree :")
+printTree(root)
+print("--------------------------------------------------")
+print("Infix : "+infix(root))
+print("Prefix : "+prefix(root))
