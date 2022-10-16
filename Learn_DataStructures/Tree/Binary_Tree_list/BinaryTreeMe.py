@@ -104,6 +104,68 @@ def insert(rootNode,newNode):
         else:
             prn.Enqueue(q.rightChild)
             
+
+#delete node section : find deepest 
+# -> move deepest 
+# and pasted instaed of the node that wanted to deleted
+
+#find deepest node
+def getDeepsNode(rootNode):
+    if(not rootNode):
+        return
+    
+    prn = Queue()
+    prn.Enqueue(rootNode)
+    while(not prn.isEmpty()):
+        q = prn.Dequeue()
+        if(q.leftChild != None):
+            prn.Enqueue(q.leftChild)
+        if(q.rightChild != None):
+            prn.Enqueue(q.rightChild)
+        deepest_node = q
+    return deepest_node
+
+def deleteDeepestNode(rootNode,dNode):
+    if(not rootNode):
+        return
+    prn = Queue()
+    prn.Enqueue(rootNode)    
+    while(not prn.isEmpty()):
+        q = prn.Dequeue()
+        if(q.data == dNode.data):
+            q=None
+        
+        if(q.rightChild != None):
+            if(q.rightChild.data == dNode.data):
+                q.rightChild = None
+                return
+            prn.Enqueue(q.rightChild)
+
+        if(q.leftChild != None):
+            if(q.leftChild.data == dNode.data):
+                q.leftChild = None
+                return
+            prn.Enqueue(q.leftChild)
+
+def deleteNode(rootNode,node):
+    if(not rootNode):
+        return  
+
+    prn = Queue()
+    prn.Enqueue(rootNode)    
+    while(not prn.isEmpty()):
+        q = prn.Dequeue()
+        if(q.data==node.data):
+            deepest_node = getDeepsNode(rootNode)
+            deleteDeepestNode(rootNode,deepest_node)
+            q.data = deepest_node.data
+            return
+      
+        if(q.rightChild != None):
+            prn.Enqueue(q.rightChild) 
+        if(q.leftChild != None):
+            prn.Enqueue(q.leftChild)
+
 newBT = TreeNode("Drinks")
 leftChild = TreeNode("Hot")
 rightChild = TreeNode("Cold")
@@ -128,7 +190,13 @@ levelOrderTraversal(newBT)
 print("-------------------")
 
 print(searchBT(newBT,"Coffee"))
-print("--- inserting newNode ---")
-newNode = TreeNode("Cola")
-insert(newBT,newNode)
-preOrderTraversal(newBT)
+# print("--- inserting newNode ---")
+# newNode = TreeNode("Cola")
+# insert(newBT,newNode)
+# preOrderTraversal(newBT)
+
+print("--- deleting newNode ---")
+#print(getDeepsNode(newBT).data)
+# deleteDeepestNode(newBT,getDeepsNode(newBT))
+deleteNode(newBT,TreeNode("Cold"))
+levelOrderTraversal(newBT)
