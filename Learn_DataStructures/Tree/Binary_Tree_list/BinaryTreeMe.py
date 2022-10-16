@@ -174,6 +174,13 @@ def deleteAll_BT(rootNode):
     rootNode.leftChild = None
     rootNode.rightChild = None
 
+#this method from KMITL grader
+def printTree90(node, level = 0):
+    if node != None:
+        printTree90(node.rightChild, level + 1)
+        print('     ' * level, node.data)
+        printTree90(node.leftChild, level + 1)
+
 newBT = TreeNode("Drinks")
 leftChild = TreeNode("Hot")
 rightChild = TreeNode("Cold")
@@ -195,8 +202,8 @@ print("--- post order ---")
 postOrderTraversal(newBT)
 print("--- level order ---")
 levelOrderTraversal(newBT)
-print("-------------------")
-
+print("---printtree90 ---")
+printTree90(newBT)
 print(searchBT(newBT,"Coffee"))
 # print("--- inserting newNode ---")
 # newNode = TreeNode("Cola")
@@ -207,7 +214,8 @@ print("--- deleting newNode ---")
 #print(getDeepsNode(newBT).data)
 # deleteDeepestNode(newBT,getDeepsNode(newBT))
 deleteNode(newBT,TreeNode("Cold"))
-levelOrderTraversal(newBT)
-print("After delete all : ")
-deleteAll_BT(newBT)
-levelOrderTraversal(newBT)
+# levelOrderTraversal(newBT)
+# print("After delete all : ")
+# deleteAll_BT(newBT)
+# levelOrderTraversal(newBT)
+printTree90(newBT)
