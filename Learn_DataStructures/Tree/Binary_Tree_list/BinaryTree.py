@@ -1,34 +1,31 @@
-class Queue:
-    def __init__(self):
-        self.q = []
-    def Enqueue(self,i):
-        self.q.append(i)
-    def Dequeue(self):
-        if(len(self.q)==0):
-            return ""
-        return self.q.pop(0)
-    def isEmpty(self):
-        return len(self.q) == 0
-    def size(self):
-        return len(self.q)
-    def show(self):
-        return self.q.copy()
+#   Created by Elshad Karimov 
+#   Copyright © 2020 AppMillers. All rights reserved.
+
+import QueueLinkedList as queue
 
 class TreeNode:
-    def __init__(self,data):
+    def __init__(self, data):
         self.data = data
         self.leftChild = None
         self.rightChild = None
-    
-#root node -> left subtree -> right subtree
+
+newBT = TreeNode("Drinks")
+leftChild = TreeNode("Hot")
+tea = TreeNode("Tea")
+coffee = TreeNode("Coffee")
+leftChild.leftChild = tea
+leftChild.rightChild = coffee
+rightChild = TreeNode("Cold")
+newBT.leftChild = leftChild
+newBT.rightChild = rightChild
+
 def preOrderTraversal(rootNode):
-    if not rootNode :
+    if not rootNode:
         return
     print(rootNode.data)
     preOrderTraversal(rootNode.leftChild)
     preOrderTraversal(rootNode.rightChild)
 
-#left subtree -> root node -> right subtree
 def inOrderTraversal(rootNode):
     if not rootNode:
         return
@@ -36,7 +33,6 @@ def inOrderTraversal(rootNode):
     print(rootNode.data)
     inOrderTraversal(rootNode.rightChild)
 
-#left subtree -> right subtree -> root node
 def postOrderTraversal(rootNode):
     if not rootNode:
         return
@@ -44,36 +40,129 @@ def postOrderTraversal(rootNode):
     postOrderTraversal(rootNode.rightChild)
     print(rootNode.data)
 
-# display each sub tree in the same hight
 def levelOrderTraversal(rootNode):
-    prn = Queue()
-    prn.Enqueue(rootNode)
-    while(not prn.isEmpty()):
-        q = prn.Dequeue()
-        if(q.leftChild != None):
-            prn.Enqueue(q.leftChild)
-        if(q.rightChild != None):
-            prn.Enqueue(q.rightChild)
-        print(q.data)
+    if not rootNode:
+        return
+    else:
+        customQueue = queue.Queue()
+        customQueue.enqueue(rootNode)
+        while not(customQueue.isEmpty()):
+            root = customQueue.dequeue()
+            print(root.value.data)
+            if (root.value.leftChild is not None):
+                customQueue.enqueue(root.value.leftChild)
+            
+            if (root.value.rightChild is not None):
+                customQueue.enqueue(root.value.rightChild)
 
-newBT = TreeNode("Drinks") 
-leftChild = TreeNode("Hot")
-rightChild = TreeNode("Cold") 
+def searchBT(rootNode, nodeValue):
+    if not rootNode:
+        return "The BT does not exist"
+    else:
+        customQueue = queue.Queue()
+        customQueue.enqueue(rootNode)
+        while not(customQueue.isEmpty()):
+            root = customQueue.dequeue()
+            if root.value.data == nodeValue:
+                return "Success"
+            if (root.value.leftChild is not None):
+                customQueue.enqueue(root.value.leftChild)
+            
+            if (root.value.rightChild is not None):
+                customQueue.enqueue(root.value.rightChild)
+        return "Not found"
 
-tea = TreeNode("Tea")
-coffee = TreeNode("Coffee")
+def insertNodeBT(rootNode, newNode):
+    if not rootNode:
+        rootNode = newNode
+    else:
+        customQueue = queue.Queue()
+        customQueue.enqueue(rootNode)
+        while not(customQueue.isEmpty()):
+            root = customQueue.dequeue()
+            if root.value.leftChild is not None:
+                customQueue.enqueue(root.value.leftChild)
+            else:
+                root.value.leftChild = newNode
+                return "Successfully Inserted"
+            if root.value.rightChild is not None:
+                customQueue.enqueue(root.value.rightChild)
+            else:
+                root.value.rightChild = newNode
+                return "Successfully Inserted"
 
-leftChild.leftChild = tea
-leftChild.rightChild = coffee
+def getDeepestNode(rootNode):
+    if not rootNode:
+        return
+    else:
+        customQueue = queue.Queue()
+        customQueue.enqueue(rootNode)
+        while not(customQueue.isEmpty()):
+            root = customQueue.dequeue()
+            if (root.value.leftChild is not None):
+                customQueue.enqueue(root.value.leftChild)
+            
+            if (root.value.rightChild is not None):
+                customQueue.enqueue(root.value.rightChild)
+        deepestNode = root.value
+        return deepestNode
 
-newBT.leftChild = leftChild
-newBT.rightChild = rightChild
+def deleteDeepestNode(rootNode, dNode):
+    if not rootNode:
+        return
+    else:
+        customQueue = queue.Queue()
+        customQueue.enqueue(rootNode)
+        while not(customQueue.isEmpty()):
+            root = customQueue.dequeue()
+            if root.value is dNode:
+                root.value = None
+                return
+            if root.value.rightChild:
+                if root.value.rightChild is dNode:
+                    root.value.rightChild = None
+                    return
+                else:
+                    customQueue.enqueue(root.value.rightChild)
+            if root.value.leftChild:
+                if root.value.leftChild is dNode:
+                    root.value.leftChild = None
+                    return
+                else:
+                    customQueue.enqueue(root.value.leftChild)
 
-print("--- pre order ---")
-preOrderTraversal(newBT)
-print("--- in order ---")
+def deleteNodeBT(rootNode, node):
+    if not rootNode:
+        return "The BT does not exist"
+    else:
+        customQueue = queue.Queue()
+        customQueue.enqueue(rootNode)
+        while not(customQueue.isEmpty()):
+            root = customQueue.dequeue()
+            if root.value.data == node:
+                dNode = getDeepestNode(rootNode)
+                root.value.data = dNode.data
+                deleteDeepestNode(rootNode, dNode)
+                return "The node has been successfully deleted"
+            if (root.value.leftChild is not None):
+                customQueue.enqueue(root.value.leftChild)
+            
+            if (root.value.rightChild is not None):
+                customQueue.enqueue(root.value.rightChild)
+        return "Failed to delete"
+
+def deleteBT(rootNode):
+    rootNode.data = None
+    rootNode.leftChild = None
+    rootNode.rightChild = None
+    return "The BT has been successfully deleted" 
+
 inOrderTraversal(newBT)
-print("--- post order ---")
-postOrderTraversal(newBT)
-print("--- level order ---")
-levelOrderTraversal(newBT)
+
+        
+            
+
+
+
+
+
