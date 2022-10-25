@@ -130,6 +130,7 @@ def minValueNode(bstNode):
         current = current.leftChild
     return current
 
+#not done 
 def deleteNode(rootNode,nodeValue):
     if rootNode == None:
         return rootNode
