@@ -70,7 +70,7 @@ class BinarySearchTree:
             r.data = temp.data
             r.right = self.delete(r.right,temp.data)
 
-            return r
+        return r
 
     def getMinValue_node(self,r):
         cur = r
@@ -92,7 +92,7 @@ for item in data:
     val = item.split()[1]
     if(order=="d"):
         print("delete "+str(val))
-        tree.delete(tree.root,int(val))
+        tree.root = tree.delete(tree.root,int(val))
         printTree90(tree.root)
         continue
     if(order=="i"):
