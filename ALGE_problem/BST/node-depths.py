@@ -1,11 +1,5 @@
 #write a function that takes in a Binary tree
 #and return the sum of it's nodes'depths.
-def nodeDepths(root):
-    # Write your code here.
-    pass
-
-def sum_of_depth(root):
-    pass
 
 # This is the class of the input binary tree.
 class BinaryTree:
@@ -13,3 +7,14 @@ class BinaryTree:
         self.value = value
         self.left = None
         self.right = None
+
+def nodeDepths(root : BinaryTree):
+    res = 0
+    return helper(root,0)
+
+def helper(root : BinaryTree,d):
+    if(root == None):
+        return 0 
+    
+    return d + helper(root.left,d+1) +helper(root.right,d+1)
+

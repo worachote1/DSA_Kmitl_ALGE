@@ -1,8 +1,4 @@
 #Ex 100 Same Tree
-from asyncio.windows_events import NULL
-from turtle import right
-
-
 class TreeNode:
      def __init__(self, val=0, left=None, right=None):
          self.val = val
