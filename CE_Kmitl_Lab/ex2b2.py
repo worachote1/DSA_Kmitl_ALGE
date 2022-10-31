@@ -157,7 +157,7 @@ for e in data:
     # prn_tree.insert_prn(e)
     temp = cloneBinaryTree(root)
     root = myTree.insert(root, e)
-    printTree90(root)
+    # printTree90(root)
 
     # test 44 clone temp then insert_prn
     prn_tree = cloneBinaryTree(temp)
@@ -184,7 +184,9 @@ for e in data:
                     curr = curr.right
 
         # printTree90(prn_tree)
-        print(heightBalancedBinaryTree(prn_tree))
-
+        # print(heightBalancedBinaryTree(prn_tree))
+        if(not heightBalancedBinaryTree(prn_tree)):
+            print("Not Balance, Rebalance!")
+    printTree90(root)
     print("===============")
     
