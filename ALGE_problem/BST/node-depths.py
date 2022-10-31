@@ -9,7 +9,7 @@ class BinaryTree:
         self.right = None
 
 def nodeDepths(root : BinaryTree):
-    res = 0
+    
     return helper(root,0)
 
 def helper(root : BinaryTree,d):
