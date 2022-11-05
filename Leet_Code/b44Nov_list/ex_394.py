@@ -13,8 +13,27 @@ class Stack:
 
 class Solution:
     def decodeString(self, s: str) :
-        
-
+        ss = ""
+        num = 0
+        stack = Stack()
+        for item in s:
+            if(item.isdigit()):
+                num = 10*num + int(item)
+                continue
+            if(item=="["):
+                stack.push(num)
+                stack.push(ss)
+                num = 0
+                ss = ""
+                continue
+            if(item=="]"):
+                prev_ss = stack.pop()
+                prev_num = stack.pop()
+                ss = prev_ss + prev_num*ss
+                continue
+            else:
+                ss += item
+        return ss
 
 prn = Solution()
 print(prn.decodeString("3[a]2[bc]"))
