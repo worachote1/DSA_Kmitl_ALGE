@@ -1,5 +1,2 @@
-s = "bcabc"
-print("a"<"b")
-
-x = [1]
-print(x[-1])
+x = [3,2,1]
+print(x[1:len(x)])
