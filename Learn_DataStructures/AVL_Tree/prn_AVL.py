@@ -72,12 +72,45 @@ def searchNode(rootNode : AVLNode,val : int):
         else:
             searchNode(rootNode.rightChild,val)      
 
+# Insert Section
 # Insert a node in AVL Tree
 # Case I : Rotation is not required
 # Case II : Rotation is required 
-#         -> LL : left left condition
-#         -> LR : left right condition
-#         -> RR : right right condition
-#         -> RL : right left condition
+#         -> LL : left left condition   ->>> Right rotation
+#         -> LR : left right condition  ->>> 1.Left rotation 2.Right rotation
+#         -> RR : right right condition ->>> Left rotation
+#         -> RL : right left condition  ->>> 1.Right rotation 2.Left rotation
 
+def getHeight(rootNode:AVLNode):
+    if(rootNode==None):
+        return 0
+    return rootNode.height
+
+def rightRotate(disbalanceNode:AVLNode):
+    newRoot = disbalanceNode.leftChild
+    disbalanceNode.leftChild = disbalanceNode.leftChild.rightChild
+    newRoot.rightChild = disbalanceNode
+    #then update the height of newRoot and disbalanceNode
+    disbalanceNode.height = 1+max(getHeight(disbalanceNode.leftChild),getHeight(disbalanceNode.rightChild))
+    newRoot.height = 1+max(getHeight(newRoot.leftChild),getHeight(newRoot.rightChild))
+
+    return newRoot
+
+def leftRotate(disbalanceNode:AVLNode):
+    newRoot = disbalanceNode.rightChild
+    disbalanceNode.rightChild = disbalanceNode.rightChild.leftChild
+    newRoot.leftChild = disbalanceNode
+    #then update the height of newRoot and disbalanceNode
+    disbalanceNode.height = 1+max(getHeight(disbalanceNode.leftChild),getHeight(disbalanceNode.rightChild))
+    newRoot.height = 1+max(getHeight(newRoot.leftChild),getHeight(newRoot.rightChild))
+
+    return newRoot
+# End Insert Section .....
+
+# print tree method from KMITL
+def printTree90(node, level=0):
+    if node != None:
+        printTree90(node.right, level + 1)
+        print('     ' * level, node)
+        printTree90(node.left, level + 1)
 newAVL = AVLNode(10)
