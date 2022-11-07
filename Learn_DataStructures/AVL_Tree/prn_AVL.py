@@ -108,7 +108,7 @@ def leftRotate(disbalanceNode:AVLNode):
 
 def getBalance(rootNode:AVLNode):
     if(rootNode == None):
-        return 0
+        return 0 
     return getHeight(rootNode.leftChild)-getHeight(rootNode.rightChild)
 
 def insertNode(rootNode:AVLNode,val:int):
@@ -123,16 +123,20 @@ def insertNode(rootNode:AVLNode,val:int):
     balance = getBalance(rootNode) #Identify which condition is in Case II 
     #Left Left condition
     if (balance > 1 and val < rootNode.leftChild.data):
+        print("not balance --> rotate")
         return rightRotate(rootNode)
     #Left Right condition
     if(balance > 1 and  val > rootNode.leftChild.data):
+        print("not balance --> rotate")
         rootNode.leftChild = leftRotate(rootNode.leftChild)
         return rightRotate(rootNode)
     #Right Right condition
     if(balance < -1 and val > rootNode.rightChild.data):
+        print("not balance --> rotate")
         return leftRotate(rootNode)
     #Right Left condition
     if(balance < -1 and val < rootNode.rightChild.data):
+        print("not balance --> rotate")
         rootNode.rightChild = rightRotate(rootNode.rightChild)
         return leftRotate(rootNode)
     
@@ -140,10 +144,74 @@ def insertNode(rootNode:AVLNode,val:int):
 
 # End Insert Section .....
 
+# Delete Section
+# Delete a node from AVL Tree
+# Case I : Tree does;nt exist
+# Case II : Rotation is not required 
+# Case III : Rotation is required (just like Insert Section)
+#         -> LL : left left condition   ->>> Right rotation
+#         -> LR : left right condition  ->>> 1.Left rotation 2.Right rotation
+#         -> RR : right right condition ->>> Left rotation
+#         -> RL : right left condition  ->>> 1.Right rotation 2.Left rotation
+
+def getMinValueNode(rootNode : AVLNode):
+    if(rootNode == None or rootNode.leftChild == None):
+        return rootNode
+    return getMinValueNode(rootNode.leftChild)
+
+def deleteNode(rootNode : AVLNode , val : int):
+    if(rootNode == None):
+        return rootNode
+    elif(val < rootNode.data):
+        rootNode.leftChild = deleteNode(rootNode.leftChild,val)
+    elif(val > rootNode.data):
+        rootNode.rightChild = deleteNode(rootNode.rightChild,val)
+    else:
+        # node to be deleted have one child or not have any children
+        if(rootNode.leftChild == None):
+            temp = rootNode.rightChild
+            rootNode = None
+            return temp
+        elif(rootNode.rightChild == None):
+            temp = rootNode.leftChild
+            rootNode = None
+            return temp
+
+        # node to be deleted have two children
+        temp = getMinValueNode(rootNode.rightChild) 
+        rootNode.data = temp.data
+        rootNode.rightChild = deleteNode(rootNode.rightChild,temp.data)
+
+    rootNode.height = 1+max(getHeight(rootNode.leftChild),getHeight(rootNode.rightChild))
+    balance = getBalance(rootNode)
+    #Left Left condition
+    if(balance > 1 and getBalance(rootNode.leftChild) >= 0):
+        return rightRotate(rootNode)
+    #Right Right condition
+    if(balance < -1 and getBalance(rootNode.rightChild) <= 0):
+        return leftRotate(rootNode)
+    #Left Right condition
+    if(balance > 1 and getBalance(rootNode.leftChild) < 0):
+        rootNode.leftChild = leftRotate(rootNode.leftChild)
+        return rightRotate(rootNode)
+    #Right Left condition
+    if(balance < -1 and getBalance(rootNode.rightChild) > 0):
+        rootNode.rightChild = rightRotate(rootNode.rightChild)
+        return leftRotate(rootNode)
+
+    return rootNode
+# End Delete section
+
 # print tree method from KMITL
-def printTree90(node, level=0):
+def printTree90(node : AVLNode, level=0):
     if node != None:
-        printTree90(node.right, level + 1)
-        print('     ' * level, node)
-        printTree90(node.left, level + 1)
-newAVL = AVLNode(10)
+        printTree90(node.rightChild, level + 1)
+        print('     ' * level, node.data)
+        printTree90(node.leftChild, level + 1)
+
+newAVL = AVLNode(5)
+newAVL = insertNode(newAVL,10)
+newAVL = insertNode(newAVL,15)
+newAVL = insertNode(newAVL,20)
+newAVL = deleteNode(newAVL,5)
+printTree90(newAVL)
