@@ -5,6 +5,23 @@ class BinaryTree:
         self.right = right
     
 
-def heightBalancedBinaryTree(tree):
+def heightBalancedBinaryTree(tree : BinaryTree):
     # Write your code here.
-    return False
+    return helper(tree)
+
+def helper(tree : BinaryTree):
+    if(tree == None):
+        return True
+    if(tree.left == None and tree.right == None):
+        return True
+    x = findHeight(tree.left,0)
+    y = findHeight(tree.right,0)
+    return (abs(x-y)<=1) and helper(tree.left) and helper(tree.right)
+
+def findHeight(tree : BinaryTree,h):
+    if(tree == None):
+        return h-1
+    a = findHeight(tree.left,h+1)
+    b = findHeight(tree.right,h+1)
+
+    return max(a,b)

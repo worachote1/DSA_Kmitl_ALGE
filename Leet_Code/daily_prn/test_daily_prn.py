@@ -1,6 +1,20 @@
-x = {"a":[1,3],"b":[4,2],"c":[3,5]}
+# x = 9996
+# ss = [item for item in str(x)]
+# res = []
+# maxNum = 0
 
-for item in x.values():
-    print(item)
+# for i in range(len(ss)):
+#     if(ss[i]==9):
+#         continue
+#     temp = ss[i]
+#     ss[i] = "9"
+#     ss_toInt = int("".join(ss))
+#     if(ss_toInt>maxNum):
+#         maxNum = ss_toInt
+#         res = [int(item) for item in ss] 
+#     ss[i]=temp
 
-print([4,2] in x.values())
+# print(res)
+
+b = [9,6]
+print(int(b))
