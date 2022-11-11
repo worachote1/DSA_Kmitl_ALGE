@@ -5,6 +5,10 @@ class Solution:
         return res
     def helper(self,candidates: list[int], target: int, res : list):
         candidates.sort()
+        if(len(candidates)==2):
+            if(candidates[0]+candidates[1]==target):
+                res.append([candidates[0],candidates[1]])
+                return
         for i in range(len(candidates)):
             pL,pR = 0,len(candidates)-1
             if(candidates[i]==target):
@@ -14,8 +18,8 @@ class Solution:
                 break
             while(pL<pR):
                 # print("ds")
-                # if(pL == i or pR == i):
-                #     break
+                if(pL == i or pR == i):
+                    break
                 if(candidates[pL]+candidates[i]==target):
                     data = [candidates[pL],candidates[i]]
                     data.sort()
@@ -26,6 +30,13 @@ class Solution:
                     data.sort()
                     if(data not in res):
                         res.append(data)
+                #add prn
+                if(candidates[pL]+candidates[pR]==target):
+                    data = [candidates[pL],candidates[pR]]
+                    data.sort()
+                    if(data not in res):
+                        res.append(data)
+                    
                 sumNum = candidates[pL]+candidates[i]+candidates[pR]
                 if(sumNum<target):
                     pL += 1
@@ -46,3 +57,5 @@ print(test.combinationSum2([2,5,2,1,2],5))
 #prn error test case
 print(test.combinationSum2([1,2],2))
 print(test.combinationSum2([1,1],2))
+
+print(test.combinationSum2([2,3,5],7))
