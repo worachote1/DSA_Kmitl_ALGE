@@ -1,4 +1,2 @@
-x = [1,5,2]
-# a = [item for item in x.sort()]
-# x.so
-# print(x.sort())
+for i in range(3,3+1):
+    print(i)
