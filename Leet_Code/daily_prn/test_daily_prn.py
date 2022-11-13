@@ -1,3 +1,3 @@
-x = "hello"
-
-print(x[1:1])
+print(700 % 26)
+print("FSfv")
+print(700 // 26)
