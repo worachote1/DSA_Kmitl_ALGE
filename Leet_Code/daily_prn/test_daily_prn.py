@@ -1,2 +1,3 @@
-for i in range(3,3+1):
-    print(i)
+x = "hello"
+
+print(x[1:1])
