@@ -1,14 +1,11 @@
 class Solution:
     def missingNumber(self, nums: list[int]) :
-        nums.sort()
-        x = 0
-        k = 0
-        while(k<=len(nums)-1):
-            if(x!=nums[k]):
-                break
-            k+=1
-            x+=1
-        return x
+        n = len(nums)
+        series_sum = n*(n+1)//2
+        for item in nums:
+            series_sum -= item
+
+        return series_sum
         
 test = Solution()
 print(test.missingNumber([3,0,1]))
