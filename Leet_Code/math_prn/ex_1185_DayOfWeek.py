@@ -14,3 +14,4 @@ class Solution:
 
 test = Solution()
 print(test.dayOfTheWeek(31,8,2019))
+print(test.dayOfTheWeek(26,12,2004))
