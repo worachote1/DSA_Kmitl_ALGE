@@ -7,16 +7,7 @@ class TreeNode:
         
 class Solution:
     def pathSum(self, root: TreeNode, targetSum: int) :
-        self.numOfpath = 0
-        self.helper(root,targetSum)
-        return self.numOfpath
+        data = {}
+        data[0]=1
 
     def helper(self,root : TreeNode, targetSum : int):
-        if(root == None):
-            return 
-        targetSum -= root.val
-        if(targetSum == 0):
-            self.numOfpath+=1
-
-        self.helper(root.left,targetSum)
-        self.helper(root.right,targetSum)
