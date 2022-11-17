@@ -1,2 +1,3 @@
-pp = [1,5,6]
-print([item] for item in pp)
+x = {4: 1, 1: 1, -1: 2, 2: 2, 3: 1}
+for item in x.items():
+    print(item)
