@@ -1,4 +1,6 @@
 def solution(data: list):
+    if(check_Repdrome(data)):
+        return "Repdrome"
     if(check_Metadrome(data)):
         return "Metadrome"
     if(check_Plaindrome(data)):
@@ -7,8 +9,6 @@ def solution(data: list):
         return "Katadrome"
     if(check_Nialpdrome(data)):
         return "Nialpdrome"
-    if(check_Repdrome(data)):
-        return "Repdrome"
     return "Nondrome"
 
 
