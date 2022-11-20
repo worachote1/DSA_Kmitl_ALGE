@@ -1,57 +1,60 @@
-x = "1357"
-data = [int(item) for item in x]
-def check_Metadrome(data : list):
-    prev_val = []
-    for i in range(len(data)-1):
-        if(not (data[i]<data[i+1])):
-            return False
-        if(data[i] in prev_val):
-            return False
-        prev_val.append(data[i])
-    return True if data[len(data)-1] not in prev_val else False
-x1 = "12344"
-data1 = [int(item) for item in x1]
-def check_Plaindrome(data : list):
-    prev_val = []
-    isDup = False
-    for i in range(len(data)-1):
-        if(not (data[i]<=data[i+1])):
-            return False
-        if(data[i] in prev_val):
-            isDup = True
-        prev_val.append(data[i])
+class Data:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+    def __str__(self):
+        return "({0}, {1})".format(self.key, self.value)
+
+class hash:
+    def __init__(self,size,maxcol):
+        self.table = [None]*size
+        self.size = size
+        self.maxcol = maxcol
+
+    def insert(self,key,value):
+        idx = 0
+        if not self.isFull():
+            for i in key:
+                idx += ord(i) % self.size
+            idx %= self.size
+
+            if self.table[idx] is None:
+                self.table[idx] = Data(key,value)
+            
+            elif self.table[idx] is not None:
+                r, newidx = 0, idx
+                print(f'collision number {r+1} at {newidx}')
+                
+                while self.table[newidx] is not None :
+                    r += 1
+                    newidx = ( idx + r * r ) % self.size
+                    if self.table[newidx] is None:
+                        self.table[newidx] = Data(key,value)
+                        break
+                    if self.maxcol <= r:
+                        print("Max of collisionChain")
+                        break
+                    print(f'collision number {r+1} at {newidx}')
+
+    def isFull(self):
+        return None not in self.table
     
-    isLast_Dup = data[len(data)-1] in prev_val
-    return True if isDup or isLast_Dup else False
+    def __str__(self):
+        s = ""
+        for i in range(len(self.table)):
+            s += f'#{i+1}      {self.table[i]}\n'
+        return s
 
-x2 = "7531"
-data2 = [int(item) for item in x2]
-def check_Katadrome(data: list):
-    prev_val = []
-    for i in range(len(data)-1):
-        if(not (data[i]>data[i+1])):
-            return False
-        if(data[i] in prev_val):
-            return False
-        prev_val.append(data[i])
-    return True if data[len(data)-1] not in prev_val else False
-
-x3 = "9874441"
-data3 = [int(item) for item in x3]
-def check_Nialpdrome(data : list):
-    prev_val = []
-    isDup = False
-    for i in range(len(data)-1):
-        if(not (data[i]>=data[i+1])):
-            return False
-        if(data[i] in prev_val):
-            isDup = True
-        prev_val.append(data[i])
-    
-    isLast_Dup = data[len(data)-1] in prev_val
-    return True if isDup or isLast_Dup else False
-
-print(check_Metadrome(data))
-print(check_Plaindrome(data1))
-print(check_Katadrome(data2))
-print(check_Nialpdrome(data3))
+print(" ***** Fun with hashing *****")
+inp = input("Enter Input : ").split("/")
+size, maxcol = inp[0].split()
+data = inp[1].split(",")
+Hash = hash(int(size),int(maxcol))
+for i in data:
+    Hash.insert(i.split()[0],i.split()[1])
+    print(Hash,end="")
+    print("---------------------------")
+    if Hash.isFull():
+        print("This table is full !!!!!!")
+        break
