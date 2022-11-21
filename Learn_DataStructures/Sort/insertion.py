@@ -4,11 +4,10 @@ def insertion(data : list):
     for i in range(1,len(data)):
         key = data[i]
         j = i-1
-        while(j>=0 and key < data[j]):
-            data[j+1] = data[j]
+        while(j>=0 and key<data[j]):
+            data[j+1]=data[j]
             j-=1
-        data[j+1] = key
-
+        data[j+1]=key
 
 print(x)
 insertion(x)
