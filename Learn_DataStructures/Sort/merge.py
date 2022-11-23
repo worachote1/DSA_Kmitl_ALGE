@@ -1,5 +1,4 @@
 x = [2, 1, 3, -4, 22, 7, 15]
-
 # helper
 def merge(data: list, l: int, m: int, r: int):
     n1 = m - l + 1
@@ -25,7 +24,7 @@ def merge(data: list, l: int, m: int, r: int):
             data[k]=R_arr[j]
             k+=1
             j+=1
-    
+            
     while(i<n1):
         data[k]=L_arr[i]
         k+=1

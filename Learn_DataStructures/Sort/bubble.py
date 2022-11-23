@@ -6,6 +6,13 @@ def bubble(data : list):
             if(data[j]>data[j+1]):
                 data[j],data[j+1]=data[j+1],data[j]
 
+def checkIssorted(data : list):
+    if(len(data)==0 or len(data)==1):
+        return True
+    return data[0]<data[1] and checkIssorted(data[1:])
+
 print(x)
+print(checkIssorted(x))
 bubble(x)
 print(x)
+print(checkIssorted(x))
