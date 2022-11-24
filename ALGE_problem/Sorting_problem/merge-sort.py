@@ -44,4 +44,3 @@ x = [2,1,3,-4,22,7,15]
 print(x)
 mergeSort(x,0,len(x)-1)
 print(x)
-
