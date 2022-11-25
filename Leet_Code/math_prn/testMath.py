@@ -1,2 +1,3 @@
-x = [1,2,3,4]
-print(x[::-2])
+x = 15
+ss = "{0:b}".format(-1)
+print(ss)
