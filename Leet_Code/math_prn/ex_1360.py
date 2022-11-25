@@ -34,6 +34,5 @@ print(test.daysBetweenDates("2020-01-15","2019-12-31"))
 # date1 : "2023-01-13" , date2 : "2044-02-11" 
 # Note from now 25/nov/2022 --> what will happen on date2 (date2 : "2044-02-11" )
 print(test.daysBetweenDates("2023-01-13","2044-02-11")) # must be 7699
-print("prnnnnn")
 print(test.helper("2023-01-13"))
 print(test.helper("2044-02-11"))
