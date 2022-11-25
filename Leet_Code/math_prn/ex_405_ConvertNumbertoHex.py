@@ -6,4 +6,18 @@
 
 class Solution:
     def toHex(self, num: int) :
-        pass
+        digit_code = {10:"a",11:"b",12:"c",13:"d",14:"e",15:"f"}
+        data = []
+        if(num == 0):
+            return "0"
+        if(num < 0):
+            num = num + 2**32
+        while(num>0):
+            x = num % 16
+            num = num // 16
+            data.append(digit_code[x] if x>=10 and x<=15 else str(x))
+        
+        return "".join(data[::-1])
+
+test = Solution()
+print(test.toHex(-1))
