@@ -1,3 +1,4 @@
-x = 15
-ss = "{0:b}".format(-1)
-print(ss)
+import math 
+x = "15"
+print(x.isdigit())
+c = math.s
