@@ -1,4 +1,2 @@
-import math 
-x = "15"
-print(x.isdigit())
-c = math.s
+x = 15
+print(x>>4)
