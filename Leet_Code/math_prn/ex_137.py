@@ -20,19 +20,19 @@ class Solution:
 
     # Solution III : bit shift prn
     def singleNumber(self, nums: list[int]):
-        arr = [0]*32
-        for i in range(32):
-            for item in nums:
-                arr[i] += (item>>i) & 1
-                arr[i] = arr[i] % 3 
         res = 0
         for i in range(32):
-            if(i==31 and arr[i]==1):
-                res = res - (2**31)
-            else:    
-                res = res | (arr[i] << i)        
-        # print(arr)      
-        return res 
+            count = 0
+            k = 1<<i
+            for item in nums:
+                count += (item & k)
+            count %= 3
+            if(i==31 and count!=0):
+                #now k is also = 2**31
+                res = res - 2**31
+                continue
+            res = res | k if count!=0 else res
+        return res
 
 test = Solution()
 print(test.singleNumber([2,2,3,2]))
