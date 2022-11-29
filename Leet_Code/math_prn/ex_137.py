@@ -10,13 +10,34 @@ class Solution:
     #             return nums[Idx]
     #     return nums[-1]
 
-    # Solution II : bit manipulation
+    # Solution II : bit manipulation (best run time)
+    # def singleNumber(self, nums: list[int]):
+    #     one,two = 0,0
+    #     for item in nums:
+    #         one = (one^item) & (~two)
+    #         two = (two^item) & (~one)
+    #     return one
+
+    # Solution III : bit shift prn
     def singleNumber(self, nums: list[int]):
-        one,two = 0,0
-        for item in nums:
-            one = (one^item) & (~two)
-            two = (two^item) & (~one)
-        return one
+        arr = [0]*32
+        for i in range(32):
+            for item in nums:
+                arr[i] += (item>>i) & 1
+                arr[i] = arr[i] % 3 
+        res = 0
+        for i in range(32):
+            if(i==31 and arr[i]==1):
+                res = res - (2**31)
+            else:    
+                res = res | (arr[i] << i)        
+        # print(arr)      
+        return res 
+
 test = Solution()
 print(test.singleNumber([2,2,3,2]))
 print(test.singleNumber([0,1,0,1,0,1,99]))
+
+# error test case
+# In some languages such as python it will give wrong answer in case of negative elements.
+print(test.singleNumber([-2,-2,1,1,4,1,4,4,-4,-2]))
