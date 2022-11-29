@@ -1,2 +1,2 @@
-x = 15
-print(x>>4)
+x = -3
+print(x)
