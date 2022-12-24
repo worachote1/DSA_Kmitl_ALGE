@@ -1,5 +1,3 @@
-x = [5,7,8,9]
-
-for i in range(len(x)-1,0,-1):
-    print(x[i])
-
+import math
+print(math.ceil(6/-132))
+print(math.floor(13/5))
