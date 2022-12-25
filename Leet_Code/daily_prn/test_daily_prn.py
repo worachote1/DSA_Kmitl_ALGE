@@ -1,2 +1,2 @@
-x = ["flower","flow","flight"]
-print(x[1:])
+print(pow(4,2))
+print(1//10)
