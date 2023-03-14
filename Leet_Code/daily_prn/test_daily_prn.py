@@ -1,2 +1,1 @@
-x = "prnv"
-print(x[:len(x)-1])
+print(ord('๑'))
