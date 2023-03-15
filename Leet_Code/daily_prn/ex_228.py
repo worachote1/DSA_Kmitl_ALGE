@@ -2,22 +2,18 @@ class Solution(object):
     def summaryRanges(self, nums):
         Idx,n,res = 0,len(nums),[]
         while(Idx<n):
-            temp,j = [nums[Idx]],Idx+1
-            while(j<n):
-                x = temp[-1]
-                if(x==nums[j] or x==nums[j]-1):
-                    temp.append(nums[j])
-                    j+=1
+            startVal= nums[Idx]
+            while(Idx<n-1):
+                if(nums[Idx]==nums[Idx+1]-1):
+                    Idx+=1
                 else:
                     break
-            Idx = j
-            temp2 = list(set(temp))
-            temp2.sort()
-            # print("temp2 prn : ",temp2)
-            if(len(temp2)>1):
-                res.append(str(temp2[0])+"->"+str(temp2[-1]))
+            endVal = nums[Idx]
+            if(startVal==endVal):
+                res.append(str(endVal))
             else:
-                res.append(str(temp2[0]))
+                res.append(str(startVal)+"->"+str(endVal))
+            Idx += 1
         return res
     
 test = Solution()
