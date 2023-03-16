@@ -1,3 +1,3 @@
 r=4
-x = [[] for item in range(r)]
+x = [0 for item in range(r)]
 print(x)
