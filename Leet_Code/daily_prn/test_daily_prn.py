@@ -1,3 +1,4 @@
-r=4
-x = [0 for item in range(r)]
-print(x)
+x = "prnhjkl"
+print(x*0)
+print((4-1)/1)
+print(4/1.00)
