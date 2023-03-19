@@ -1,4 +1,15 @@
-x = "prnhjkl"
-print(x*0)
-print((4-1)/1)
-print(4/1.00)
+class WordDictionary(object):
+    
+    def __init__(self):
+        self.arr = []
+
+    def addWord(self, word):
+        self.arr.append(word)
+        
+
+    def search(self, word):
+        """
+        :type word: str
+        :rtype: bool
+        """
+        
