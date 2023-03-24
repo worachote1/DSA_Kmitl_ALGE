@@ -1,3 +1,3 @@
-n_row,n_col=2,2
-x = [[False for item in range(n_col)] for item in range(n_row)]
-print(x)
+x= {"a" : 1,"b" : 2}
+x["c"] = 4 
+print(list(x))
