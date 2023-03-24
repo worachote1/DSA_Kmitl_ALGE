@@ -1,3 +1,3 @@
-s = "3z49"
-
-print(ord(s[-1]))
+n_row,n_col=2,2
+x = [[False for item in range(n_col)] for item in range(n_row)]
+print(x)
