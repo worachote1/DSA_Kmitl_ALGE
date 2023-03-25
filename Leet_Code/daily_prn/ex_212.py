@@ -8,7 +8,7 @@ class PrefixTree():
         for item in word:
             if(item not in cur.children):
                 cur.children[item] = PrefixTree()
-            cur =cur.children[item]
+            cur = cur.children[item]
         cur.isEndOfWord = True
     
     def remove_word(self,word,Idx,cur):
@@ -24,7 +24,7 @@ class PrefixTree():
         able_to_remove = self.remove_word(word,Idx+1,next_Node)
         if(able_to_remove):
             del next_Node
-            return len(cur)==0
+            return len(cur.children)==0
         return False
 
 class Solution(object):
@@ -47,7 +47,7 @@ class Solution(object):
             cur_Node = cur_Node.children[board[Idx_row][Idx_col]]
             if(cur_Node.isEndOfWord):
                 res.append(ss_word)
-                root.remove_word(ss_word)
+                root.remove_word(ss_word,0,root)
             top_dfs = dfs(Idx_row-1,Idx_col,cur_Node,ss_word)
             bot_dfs = dfs(Idx_row+1,Idx_col,cur_Node,ss_word)
             left_dfs = dfs(Idx_row,Idx_col-1,cur_Node,ss_word)
@@ -61,6 +61,6 @@ class Solution(object):
 
 test = Solution()
 print(test.findWords([["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]],["oath","pea","eat","rain"]))
-# print(test.findWords([["a","b"],["c","d"]],["abcb"]))
+print(test.findWords([["a","b"],["c","d"]],["abcb"]))
 # err
-# print(test.findWords([["o","a","b","n"],["o","t","a","e"],["a","h","k","r"],["a","f","l","v"]],["oa","oaa"]))
+print(test.findWords([["o","a","b","n"],["o","t","a","e"],["a","h","k","r"],["a","f","l","v"]],["oa","oaa"]))
