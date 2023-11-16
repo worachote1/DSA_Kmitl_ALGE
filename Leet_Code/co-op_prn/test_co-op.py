@@ -1,6 +1,2 @@
-x = 'bb'
-print(len(x[10:0]))
-
-a = "A"
-b = a.lower()
-print(b)
+x = {1 : 22, 2 : 35}
+print(dict(x.items()))
