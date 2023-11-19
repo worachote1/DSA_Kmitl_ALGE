@@ -1,2 +1,3 @@
-x = {1 : 22, 2 : 35}
-print(dict(x.items()))
+x = [1,5,3]
+y = [1,5,3]
+print(x == y)
