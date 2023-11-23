@@ -24,7 +24,7 @@ class Solution(object):
 
         dfs(0,[],0)
         return res
-
+        
 test = Solution()
 print(test.combinationSum2([10,1,2,7,6,1,5],8))
 print(test.combinationSum2([2,5,2,1,2],5))
