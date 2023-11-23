@@ -8,12 +8,11 @@ class Solution(object):
             permData = self.permute(nums)
             for item in permData:
                 item.append(firstVal)
+            nums.append(firstVal)
             for item in permData:
                 res.append(item)
-            nums.append(firstVal)
         return res
             
-
 test = Solution()
 print(test.permute([1,2,3]))
 print(test.permute([0,1]))
