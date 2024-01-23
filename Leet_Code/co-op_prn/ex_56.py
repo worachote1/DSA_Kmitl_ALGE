@@ -1,19 +1,14 @@
 class Solution(object):
     def merge(self, intervals):
-        for i in range(len(intervals)):
-            for j in range(len(intervals)-i-1):
-                if(intervals[j][0] > intervals[j+1][0]):
-                    temp = intervals[j]
-                    intervals[j] = intervals[j+1]
-                    intervals[j+1] = temp
+        sorted_intervals = sorted(intervals,key=lambda item:item[0])
 
-        res = [intervals[0]]
-        for i in range(1,len(intervals)):
-            if(intervals[i][0] > res[-1][1]):
-                res.append(intervals[i])
+        res = [sorted_intervals[0]]
+        for i in range(1,len(sorted_intervals)):
+            if(sorted_intervals[i][0] > res[-1][1]):
+                res.append(sorted_intervals[i])
             else:
-                startIdx = min(res[-1][0],intervals[i][0]) 
-                endIdx = max(res[-1][1],intervals[i][1])
+                startIdx = min(res[-1][0],sorted_intervals[i][0]) 
+                endIdx = max(res[-1][1],sorted_intervals[i][1])
                 res[-1] = [startIdx,endIdx]
 
         return res
