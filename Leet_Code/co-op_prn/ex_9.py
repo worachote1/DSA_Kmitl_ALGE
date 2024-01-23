@@ -23,5 +23,6 @@ test = Solution()
 # print(test.isPalindrome(121))
 # print(test.isPalindrome(-121))
 # print(test.isPalindrome(10))
+# print(test.isPalindrome(9))
 # err case
 print(test.isPalindrome(1000021))
