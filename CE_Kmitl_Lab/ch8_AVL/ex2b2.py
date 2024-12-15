@@ -159,12 +159,10 @@ for e in data:
     root = myTree.insert(root, e)
     # printTree90(root)
 
-    # test 44 clone temp then insert_prn
+    # test clone temp then insert_prn
     prn_tree = cloneBinaryTree(temp)
 
     if(temp != None):
-        # print("prn tre 44 : ")
-
         # check balanced for display
         # test insert
         data = int(e)
