@@ -1,0 +1,2 @@
+DELETE FROM customer
+WHERE TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) > 60;
